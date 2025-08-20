@@ -13,7 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call(HousesTableSeeder::class);
+        $this->call(RoomsTableSeeder::class);
+        $this->call(FurnituresTableSeeder::class);
+        $this->call(ConnectedServicesTableSeeder::class);
+        $this->call(MaterialFloorTableSeeder::class);
+        $this->call(MaterialWallTableSeeder::class);
+        $this->call(LincConServHousesTableSeeder::class);
+        $this->call(LincFurnitureRoomTableSeeder::class);
 
         User::factory()->create([
             'name' => 'Test User',
