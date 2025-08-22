@@ -1,0 +1,1401 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api Конструктора Зданий\\Квартир",
+        "description": "Документация для описания работы с API.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/houses/{house_id}": {
+            "get": {
+                "tags": [
+                    "houses"
+                ],
+                "summary": "Получить один объект по ID",
+                "operationId": "6caf836d1af56eb017351ee6c4aaf22a",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID конкретного объекта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Объект успешно получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Updated": {
+                                        "summary": "Объект обновлен!",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "id": 12,
+                                                "floors": 2,
+                                                "roof": "Желтая",
+                                                "address": "Красноармейская 22 кв 3",
+                                                "garage": true,
+                                                "created": "2025-08-21 09:52:03",
+                                                "updated": null,
+                                                "wall": {
+                                                    "id": 3,
+                                                    "name": "дерево"
+                                                },
+                                                "services": [
+                                                    {
+                                                        "id": 1,
+                                                        "name": "газ"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "name": "вода"
+                                                    },
+                                                    {
+                                                        "id": 4,
+                                                        "name": "электричество"
+                                                    }
+                                                ],
+                                                "rooms": [
+                                                    {
+                                                        "id": 1,
+                                                        "name": "Спальня",
+                                                        "electr_points": 35,
+                                                        "ceiling": true,
+                                                        "created": null,
+                                                        "updated": null,
+                                                        "floor": {
+                                                            "id": 1,
+                                                            "name": "ламинат"
+                                                        },
+                                                        "furnitures": [
+                                                            {
+                                                                "id": 1,
+                                                                "name": "стул"
+                                                            },
+                                                            {
+                                                                "id": 2,
+                                                                "name": "стол"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "x-order": 2
+            },
+            "put": {
+                "tags": [
+                    "houses"
+                ],
+                "summary": "Обновить один объект по ID",
+                "operationId": "ad7edec534d5bc89f9cae74bf3bf9466",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID конкретного объекта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Данные для обновления",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HouseUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Объект обновлен!",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Updated": {
+                                        "summary": "Объект обновлен!",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "id": 12,
+                                                "floors": 2,
+                                                "roof": "Желтая",
+                                                "address": "Красноармейская 22 кв 3",
+                                                "garage": true,
+                                                "created": "2025-08-21 09:52:03",
+                                                "updated": null,
+                                                "wall": {
+                                                    "id": 3,
+                                                    "name": "дерево"
+                                                },
+                                                "services": [
+                                                    {
+                                                        "id": 1,
+                                                        "name": "газ"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "name": "вода"
+                                                    },
+                                                    {
+                                                        "id": 4,
+                                                        "name": "электричество"
+                                                    }
+                                                ],
+                                                "rooms": [
+                                                    {
+                                                        "id": 1,
+                                                        "name": "Спальня",
+                                                        "electr_points": 35,
+                                                        "ceiling": true,
+                                                        "created": null,
+                                                        "updated": null,
+                                                        "floor": {
+                                                            "id": 1,
+                                                            "name": "ламинат"
+                                                        },
+                                                        "furnitures": [
+                                                            {
+                                                                "id": 1,
+                                                                "name": "стул"
+                                                            },
+                                                            {
+                                                                "id": 2,
+                                                                "name": "стол"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибки валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "StoreValidationError": {
+                                        "$ref": "#/components/examples/StoreValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-order": 4
+            },
+            "delete": {
+                "tags": [
+                    "houses"
+                ],
+                "summary": "Удалить один объект по ID",
+                "operationId": "75ae0e12f04b32d5953b3e0f8c79f008",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID конкретного объекта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Ошибки валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "x-order": 5
+            }
+        },
+        "/api/houses/form": {
+            "get": {
+                "tags": [
+                    "houses"
+                ],
+                "summary": "Получить форму создания",
+                "operationId": "bf150c23c9f63866f04da5d57cc6eafa",
+                "responses": {
+                    "200": {
+                        "description": "Форма успешно получена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FormResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ошибка запроса"
+                    }
+                },
+                "x-order": 6
+            }
+        },
+        "/api/houses/{house_id}/form": {
+            "get": {
+                "tags": [
+                    "houses"
+                ],
+                "summary": "Получить форму редактирования объекта",
+                "operationId": "dc899d8ac542431ee09acd1b01b335af",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID конкретного объекта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Форма успешно получена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FormResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ошибка запроса"
+                    }
+                },
+                "x-order": 7
+            }
+        },
+        "/api/houses": {
+            "get": {
+                "tags": [
+                    "houses"
+                ],
+                "summary": "Получить все дома",
+                "operationId": "fb9c54d73d5e400bf8d9ad707a5f6db8",
+                "responses": {
+                    "200": {
+                        "description": "данные успешно получены",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HouseSuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ошибка запроса"
+                    }
+                },
+                "x-order": 1
+            },
+            "post": {
+                "tags": [
+                    "houses"
+                ],
+                "summary": "Создать объект",
+                "operationId": "1ee5cd5669e968420f39e15cb51783cc",
+                "requestBody": {
+                    "description": "Данные для создания",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HouseStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Объект создан!",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Created": {
+                                        "summary": "Объект создан!",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "id": 12,
+                                                "floors": 2,
+                                                "roof": "Желтая",
+                                                "address": "Красноармейская 22 кв 3",
+                                                "garage": true,
+                                                "created": "2025-08-21 09:52:03",
+                                                "updated": null,
+                                                "wall": {
+                                                    "id": 3,
+                                                    "name": "дерево"
+                                                },
+                                                "services": [],
+                                                "rooms": []
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибки валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "StoreValidationError": {
+                                        "$ref": "#/components/examples/StoreValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-order": 3,
+                "x-sort": 10
+            }
+        },
+        "/api/houses/{house_id}/rooms/{room_id}": {
+            "get": {
+                "tags": [
+                    "rooms"
+                ],
+                "summary": "Получить один объект по ID",
+                "operationId": "92fdb43b8f4391e81443130d5ca464de",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID Дома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "room_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID комнаты",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Объект успешно получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Updated": {
+                                        "summary": "Объект обновлен!",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "id": 11,
+                                                "name": "Душевая",
+                                                "electr_points": 2,
+                                                "ceiling": true,
+                                                "created": "2025-08-21 09:54:26",
+                                                "updated": null,
+                                                "floor": {
+                                                    "id": 3,
+                                                    "name": "линолеум"
+                                                },
+                                                "furnitures": [
+                                                    {
+                                                        "id": 1,
+                                                        "name": "стул"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "name": "стол"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "x-order": 2
+            },
+            "put": {
+                "tags": [
+                    "rooms"
+                ],
+                "summary": "Обновить один объект по ID",
+                "operationId": "fb855d65fdbd78d7cfe88bc2d18651f3",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID Дома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "room_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID комнаты",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Данные для обновления",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RoomUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Объект обновлен!",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Updated": {
+                                        "summary": "Объект обновлен!",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "id": 11,
+                                                "name": "Душевая",
+                                                "electr_points": 2,
+                                                "ceiling": true,
+                                                "created": "2025-08-21 09:54:26",
+                                                "updated": null,
+                                                "floor": {
+                                                    "id": 3,
+                                                    "name": "линолеум"
+                                                },
+                                                "furnitures": [
+                                                    {
+                                                        "id": 1,
+                                                        "name": "стул"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "name": "стол"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибки валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "StoreValidationError": {
+                                        "$ref": "#/components/examples/StoreValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-order": 4
+            },
+            "delete": {
+                "tags": [
+                    "rooms"
+                ],
+                "summary": "Удалить один объект по ID",
+                "operationId": "3b19fa52e78af07ff44a2d953fc7deb0",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID Дома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "room_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID комнаты",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Ошибки валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "x-order": 5
+            }
+        },
+        "/api/houses/{house_id}/rooms/form": {
+            "get": {
+                "tags": [
+                    "rooms"
+                ],
+                "summary": "Получить форму создания",
+                "operationId": "fc52deb31680bccd2db2e61c70ac10cb",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID Дома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Форма успешно получена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FormResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ошибка запроса"
+                    }
+                },
+                "x-order": 6
+            }
+        },
+        "/api/houses/{house_id}/rooms/{room_id}/form": {
+            "get": {
+                "tags": [
+                    "rooms"
+                ],
+                "summary": "Получить форму редактирования объекта",
+                "operationId": "580805c9d6caa7c9fd2e55c0cc4fc05e",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID Дома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "room_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID комнаты",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Форма успешно получена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FormResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ошибка запроса"
+                    }
+                },
+                "x-order": 7
+            }
+        },
+        "/api/houses/{house_id}/rooms": {
+            "get": {
+                "tags": [
+                    "rooms"
+                ],
+                "summary": "Получить все комнаты",
+                "operationId": "671ef6c87983727b7c83c265d9dd5f28",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID Дома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "данные успешно получены",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RoomSuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ошибка запроса"
+                    }
+                },
+                "x-order": 1
+            },
+            "post": {
+                "tags": [
+                    "rooms"
+                ],
+                "summary": "Создать объект",
+                "operationId": "2d3d90cec0ced4c3e6234aae66a0d120",
+                "parameters": [
+                    {
+                        "name": "house_id",
+                        "in": "path",
+                        "description": "Уникальный числовой ID Дома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "1": {
+                                "summary": "1",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Данные для создания",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RoomStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Объект создан!",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Created": {
+                                        "summary": "Объект создан!",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "id": 12,
+                                                "floors": 2,
+                                                "roof": "Желтая",
+                                                "address": "Красноармейская 22 кв 3",
+                                                "garage": true,
+                                                "created": "2025-08-21 09:52:03",
+                                                "updated": null,
+                                                "wall": {
+                                                    "id": 3,
+                                                    "name": "дерево"
+                                                },
+                                                "services": [],
+                                                "rooms": []
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибки валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "StoreValidationError": {
+                                        "$ref": "#/components/examples/StoreValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-order": 3,
+                "x-sort": 10
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HouseStoreRequest": {
+                "required": [
+                    "params"
+                ],
+                "properties": {
+                    "params": {
+                        "description": "Параметры",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "key": {
+                                    "description": "Ключ",
+                                    "type": "string",
+                                    "example": "electr_points"
+                                },
+                                "value": {
+                                    "description": "Значение",
+                                    "type": "mixed",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "params": [
+                        {
+                            "key": "floors",
+                            "value": 2
+                        },
+                        {
+                            "key": "roof",
+                            "value": "Желтая"
+                        },
+                        {
+                            "key": "address",
+                            "value": "Красноармейская 22 кв 3"
+                        },
+                        {
+                            "key": "garage",
+                            "value": 1
+                        },
+                        {
+                            "key": "wall",
+                            "value": 3
+                        }
+                    ]
+                }
+            },
+            "Service": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "газ"
+                    }
+                },
+                "type": "object"
+            },
+            "House": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "floors": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "roof": {
+                        "type": "string",
+                        "example": "Зеленая"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Гвардейский 32, кв 1"
+                    },
+                    "garage": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "created": {
+                        "type": "string",
+                        "example": "2025-08-21 09:54:26"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "example": "2025-08-21 09:54:26"
+                    },
+                    "wall": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "газоблок"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "services": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Service"
+                        }
+                    },
+                    "rooms": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Room"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "HouseSuccessResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "success"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "OK"
+                    },
+                    "body": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/House"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "HouseUpdateRequest": {
+                "required": [
+                    "params"
+                ],
+                "properties": {
+                    "params": {
+                        "description": "Параметры",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "key": {
+                                    "description": "Ключ",
+                                    "type": "string",
+                                    "example": "electr_points"
+                                },
+                                "value": {
+                                    "description": "Значение",
+                                    "type": "mixed",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "params": [
+                        {
+                            "key": "floors",
+                            "value": 2
+                        },
+                        {
+                            "key": "roof",
+                            "value": "Желтая"
+                        },
+                        {
+                            "key": "address",
+                            "value": "Красноармейская 22 кв 3"
+                        },
+                        {
+                            "key": "garage",
+                            "value": 1
+                        },
+                        {
+                            "key": "wall",
+                            "value": 3
+                        },
+                        {
+                            "key": "services",
+                            "value": [
+                                1,
+                                2,
+                                4
+                            ]
+                        }
+                    ]
+                }
+            },
+            "RoomStoreRequest": {
+                "required": [
+                    "params"
+                ],
+                "properties": {
+                    "params": {
+                        "description": "Параметры",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "key": {
+                                    "description": "Ключ",
+                                    "type": "string",
+                                    "example": "electr_points"
+                                },
+                                "value": {
+                                    "description": "Значение",
+                                    "type": "mixed",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "params": [
+                        {
+                            "key": "name",
+                            "value": "Душевая"
+                        },
+                        {
+                            "key": "electr_points",
+                            "value": "2"
+                        },
+                        {
+                            "key": "ceiling",
+                            "value": "1"
+                        },
+                        {
+                            "key": "floor",
+                            "value": "3"
+                        }
+                    ]
+                }
+            },
+            "Furniture": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "стол"
+                    }
+                },
+                "type": "object"
+            },
+            "Room": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Спальня"
+                    },
+                    "ceiling": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "electr_points": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "created": {
+                        "type": "string",
+                        "example": "2025-08-21 09:54:26"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "example": "2025-08-21 09:54:26"
+                    },
+                    "floor": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "ламинат"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "furnitures": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Furniture"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "RoomSuccessResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "success"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "OK"
+                    },
+                    "body": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Room"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "RoomUpdateRequest": {
+                "required": [
+                    "params"
+                ],
+                "properties": {
+                    "params": {
+                        "description": "Параметры",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "key": {
+                                    "description": "Ключ",
+                                    "type": "string",
+                                    "example": "electr_points"
+                                },
+                                "value": {
+                                    "description": "Значение",
+                                    "type": "mixed",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "params": [
+                        {
+                            "key": "name",
+                            "value": "Душевая2"
+                        },
+                        {
+                            "key": "electr_points",
+                            "value": "3"
+                        },
+                        {
+                            "key": "ceiling",
+                            "value": "0"
+                        },
+                        {
+                            "key": "floor",
+                            "value": "2"
+                        },
+                        {
+                            "key": "furnitures",
+                            "value": [
+                                2,
+                                3
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Option": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Кирпич"
+                    }
+                },
+                "type": "object"
+            },
+            "Field": {
+                "properties": {
+                    "attr": {
+                        "type": "string",
+                        "example": "services"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Подключенные сервисы"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "value": {
+                        "type": "mixed",
+                        "example": ""
+                    },
+                    "is_required": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "integer"
+                    },
+                    "dict_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "dict_table": {
+                        "type": "string",
+                        "example": "services"
+                    },
+                    "dict_options": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Option"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "FormResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "success"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "OK"
+                    },
+                    "body": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Field"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "NoObject": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Запрашиваемый объект отсутствует!"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "404": {
+                "description": "Ресурс не найден",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "example": "Resource not found"
+                                },
+                                "code": {
+                                    "type": "integer",
+                                    "example": 404
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "examples": {
+            "StoreValidationError": {
+                "summary": "Пример возможных ошибок валидации",
+                "value": {
+                    "message": "The given data was invalid.",
+                    "errors": {
+                        "name": [
+                            "Поле name обязательно для заполнения.",
+                            "Поле name должно быть строкой.",
+                            "Поле name должно содержать минимум 1 символ."
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "houses",
+            "description": "houses"
+        },
+        {
+            "name": "rooms",
+            "description": "rooms"
+        }
+    ]
+}

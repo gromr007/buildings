@@ -10,5 +10,32 @@ git remote add origin git@github.com:gromr007/buildings.git
 3) DATA
 composer require spatie/laravel-data
 ====================================================
+4)
+composer require "darkaonline/l5-swagger"
+php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+
+config:
+    'paths' => [
+        'use_absolute_path' => env('L5_SWAGGER_USE_ABSOLUTE_PATH', false),
+    ],
+    ...
+    'annotations' => [
+        base_path('ApiDocumentation/Swagger/Api'),
+    ],
+    ...
+    'constants' => [
+        'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://buildings.dcr:8890'),
+    ],
+    ...
+
+composer:
+    "autoload": {
+        "psr-4": {
+            "ApiDocumentation\\": "ApiDocumentation/"
+        }
+    },
+
+php artisan optimize:clear
+composer dump-autoload
 ====================================================
 ====================================================

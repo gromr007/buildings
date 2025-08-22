@@ -12,42 +12,22 @@
 
 1) организовать CRUD Houses
 2) организовать CRUD Rooms
-3) сделать swagger документацию
+3) сделать swagger документацию ("/api/documentation")
 
 ###Используемые инструменты:
 
-- Библиотека League csv 9.0
+- Библиотека "spatie/laravel-data"
+- Библиотека "darkaonline/l5-swagger"
 - Laravel dependency injection
-    - app/Http/Controllers/PerseCsvController.php
-    - app/Http/Controllers/HomeController.php
-- Laravel service container, service provider, Contract, Service,
-    - app/Providers/ParseCsvServiceProvider.php
-    - app/Contracts/ParseCsv.php
-    - app/Services/ParseCsv/League/League.php
+    - app/Http/Controllers/
 - Repository
-    - app/Repositories/DatacsvRepository.php
+    - app/Repositories/
 - Response Json
-    - app/Http/Resources/DataCsvPaginateResource.php
-- Get Data Scroll Cursor Pagination
-    - app/Repositories/DatacsvRepository.php
-- Inserting Large Data
-    - app/Services/ParseCsv/League/League.php
+    - app/Http/Resources/
 - Validate request
-    - app/Services/ParseCsv/ParentParseCsv.php
+    - app/Http/Requests
 - Seeders
-    - database/seeders/DatacsvsTableSeeder.php
-- Models
-    - Scope (app/Models/Datacsv.php)
-- OOP
-    - MVC
-    - Inheritance
-    - Polymorphism
-    - Dependency Injection
-    - Registry
-    - Repository
-
-
-### Структура csv файлов:
+    - database/seeders/
 
 
 ### Используемые Материалы
