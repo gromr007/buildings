@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\Services\Room;
 
-use App\Data\Forms\ManageParamData;
 use App\Data\Room\RoomIndexData;
 use App\Data\Room\RoomStoreData;
 use App\Data\Room\RoomUpdateData;
-use App\Enums\Params\Properties;
 use App\Http\Requests\Room\Data\IndexData;
 use App\Http\Requests\Room\Data\ManageData;
 use App\Http\Requests\Room\Data\ShowData;
 use App\Repositories\Room\RoomRepository;
+use App\Services\Fields\FieldsService;
 use Throwable;
 use App\Utils\Date;
 use Illuminate\Support\{Collection, Str};
@@ -67,7 +66,7 @@ final readonly class RoomService
      */
     public function createAndReturn(ManageData $manageData): RoomIndexData
     {
-        $basicFields = $this->getBasicFields($manageData->params);
+        $basicFields = FieldsService::getBasicFields($manageData->params);
 
         $storeData = RoomStoreData::from([
             ... $basicFields,
@@ -93,13 +92,10 @@ final readonly class RoomService
     public function updateAndReturn(ManageData $manageData): RoomIndexData
     {
         $updateData = RoomUpdateData::from([
-            ... $this->getBasicFields($manageData->params),
+            ... FieldsService::getBasicFields($manageData->params),
             'house_id' => $manageData->house_id,
             'update_data' => Date::now()
         ]);
-
-        //Подменяем -1
-        //$updateData = $this->addAllIdsByDict($updateData);
 
         $roomData =  $this->roomRepository->updateAndReturn(
             $manageData->room_id,
@@ -107,35 +103,6 @@ final readonly class RoomService
         );
 
         return $roomData;
-    }
-
-
-    /**
-     * Берем значения полей, одинаковых для роутов store и update
-     * @param Collection<int, ManageParamData>
-     * @return array<string, mixed>
-     * */
-    private function getBasicFields(Collection $params): array
-    {
-        $props = [];
-        foreach(Properties::Room as $propName) {
-            $props[$propName] = $this->getAttrFilter($params, $propName);
-        }
-        return $props;
-    }
-
-
-    /**
-     * Берем значение свойства из списка параметров
-     * */
-    private function getAttrFilter($params, string $attr)
-    {
-        $filtered = $params->filter(function ($item) use ($attr) {
-            return $item->key === $attr;
-        });
-        if($filtered->isNotEmpty()) {
-            return $filtered->first()->value;
-        }
     }
 
 }
