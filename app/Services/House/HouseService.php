@@ -69,7 +69,7 @@ final readonly class HouseService
      */
     public function createAndReturn(ManageData $manageData): HouseIndexData
     {
-        $basicFields = FieldsService::getBasicFields($manageData->params);
+        $basicFields = FieldsService::getBasicFields($manageData->params, 'House');
 
         $storeData = HouseStoreData::from([
             ... $basicFields,
@@ -94,7 +94,7 @@ final readonly class HouseService
     public function updateAndReturn(ManageData $manageData): HouseIndexData
     {
         $updateData = HouseUpdateData::from([
-            ... FieldsService::getBasicFields($manageData->params),
+            ... FieldsService::getBasicFields($manageData->params, 'House'),
 
             'update_data' => Date::now()
         ]);

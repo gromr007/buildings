@@ -66,7 +66,7 @@ final readonly class RoomService
      */
     public function createAndReturn(ManageData $manageData): RoomIndexData
     {
-        $basicFields = FieldsService::getBasicFields($manageData->params);
+        $basicFields = FieldsService::getBasicFields($manageData->params, 'Room');
 
         $storeData = RoomStoreData::from([
             ... $basicFields,
@@ -92,7 +92,7 @@ final readonly class RoomService
     public function updateAndReturn(ManageData $manageData): RoomIndexData
     {
         $updateData = RoomUpdateData::from([
-            ... FieldsService::getBasicFields($manageData->params),
+            ... FieldsService::getBasicFields($manageData->params, 'Room'),
             'house_id' => $manageData->house_id,
             'update_data' => Date::now()
         ]);

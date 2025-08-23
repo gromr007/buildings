@@ -26,12 +26,13 @@ final readonly class FieldsService
     /**
      * Берем значения полей, одинаковых для роутов store и update
      * @param Collection<int, ManageParamData>
+     * @param string $name
      * @return array<string, mixed>
      * */
-    public static function getBasicFields(Collection $params): array
+    public static function getBasicFields(Collection $params, string $name): array
     {
         $props = [];
-        foreach(Properties::House as $propName) {
+        foreach(Properties::{$name} as $propName) {
             $props[$propName] = static::getAttrFilter($params, $propName);
         }
         return $props;
@@ -43,9 +44,9 @@ final readonly class FieldsService
      *
      * @param Collection<int, ManageParamData>
      * @param string $attr
-     * @return ManageParamData
+     * @return mixed
      * */
-    public static function getAttrFilter(Collection $params, string $attr): ManageParamData
+    public static function getAttrFilter(Collection $params, string $attr): mixed
     {
         $filtered = $params->filter(function ($item) use ($attr) {
             return $item->key === $attr;
@@ -53,6 +54,7 @@ final readonly class FieldsService
         if($filtered->isNotEmpty()) {
             return $filtered->first()->value;
         }
+        return null;
     }
 
 
