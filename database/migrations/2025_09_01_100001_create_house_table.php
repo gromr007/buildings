@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('roof_color')->comment('Цвет крыши');
-            $table->text('address')->comment('Адрес');
+            $table->string('address')->comment('Адрес');
             $table->integer('number_of_floors')->comment('Этажность');
             $table->tinyInteger('built_in_garage')->comment('Встроен ли гараж'); // Да\Нет
 
