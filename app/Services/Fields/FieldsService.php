@@ -33,7 +33,7 @@ final readonly class FieldsService
     {
         $props = [];
         foreach(Properties::{$name} as $propName) {
-            $props[$propName] = static::getAttrFilter($params, $propName);
+            $props[$propName] = self::getAttrFilter($params, $propName);
         }
         return $props;
     }
