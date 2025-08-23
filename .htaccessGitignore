@@ -1,0 +1,32 @@
+DirectoryIndex public/index.php
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+
+    # Так как ссылки без public не работают перенаправляем в public
+    RewriteCond %{REQUEST_URI} !^public
+    RewriteRule ^(css/.*)$ public/$1 [L]
+    RewriteRule ^(js/.*)$ public/$1 [L]
+    RewriteRule ^(img/.*)$ public/$1 [L]
+    RewriteRule ^(fonts/.*)$ public/$1 [L]
+    RewriteRule ^(files/.*)$ public/$1 [L]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ public/index.php [L]
+
+</IfModule>
